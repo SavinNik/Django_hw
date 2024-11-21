@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 
 DATA = {
@@ -16,15 +17,25 @@ DATA = {
         'сыр, ломтик': 1,
         'помидор, ломтик': 1,
     },
-    # можете добавить свои рецепты ;)
 }
 
-# Напишите ваш обработчик. Используйте DATA как источник данных
-# Результат - render(request, 'calculator/index.html', context)
-# В качестве контекста должен быть передан словарь с рецептом:
-# context = {
-#   'recipe': {
-#     'ингредиент1': количество1,
-#     'ингредиент2': количество2,
-#   }
-# }
+
+def recipe_view(request, recipe_name: dict):
+
+    servings = request.GET.get('servings', 1)
+
+    try:
+        servings = int(servings)
+        if servings <= 0:
+            raise ValueError
+    except ValueError:
+        return HttpResponse('Параметр servings должен быть положительным целым числом')
+
+    recipe = {ingredient: amount * servings for ingredient, amount in DATA[recipe_name].items()}
+
+    context = {
+        'recipe': recipe
+    }
+
+    return render(request, 'calculator/index.html', context)
+
