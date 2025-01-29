@@ -2,7 +2,7 @@ name: Test-Action
 
 on:
   push:
-    branches: [ main ]
+    branches: [ video ]
 
 jobs:
   testing:
