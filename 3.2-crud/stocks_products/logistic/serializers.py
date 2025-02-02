@@ -34,7 +34,6 @@ class StockSerializer(serializers.ModelSerializer):
             )
         return stock
 
-
     def update(self, instance, validated_data):
         positions = validated_data.pop('positions')
         stock = super().update(instance, validated_data)
