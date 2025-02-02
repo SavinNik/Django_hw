@@ -11,6 +11,21 @@ jobs:
       NAME: ${{ secrets.NAME }}
       USER: ${{ secrets.USER }}
       PASSWORD: ${{ secrets.PASSWORD }}
+    services:
+      postgres_main:
+        image: postgres:latest
+        env:
+          POSTGRES_USERS: ${{ env.USER }}
+          POSTGRES_PASSWORD: ${{ env.PASSWORD }}
+          POSTGRES_DB: ${{ env.NAME }}
+        ports:
+          - 5432:5432
+        options:
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - name: Проверка изменений
         uses: actions/checkout@v2
@@ -25,3 +40,10 @@ jobs:
 
       - name: Выполнение flake8
         run: flake8 3.2-crud/stocks_products --exclude migrations --ignore E501,F401,E302,W293,W391,W292
+
+      - name: Тесты
+        run: python 3.2-crud/stocks_products/manage.py test
+        env:
+          NAME: ${{ env.NAME }}
+          USER: ${{ env.USER }}
+          PASSWORD: ${{ env.PASSWORD }}
