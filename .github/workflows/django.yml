@@ -21,7 +21,7 @@ jobs:
           python-version: 3.12
 
       - name: Установка зависимостей
-        run: pip install -r django_hw/3.2-crud/stocks_products/stocks_products/requirements.txt
+        run: pip install -r Django_hw/3.2-crud/stocks_products/stocks_products/requirements.txt
 
       - name: Выполнение flake8
         run: flake8 stocks_products --exclude migrations --ignore E501,F401,E302,W293,W391,W292
