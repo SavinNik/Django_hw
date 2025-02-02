@@ -58,7 +58,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
-          script:
+          script: |
             cd Django_hw/3.2-crud/stocks-products
             git pull
             sudo systemctl restart gunicorn
