@@ -7,5 +7,5 @@ from logistic.views import ProductViewSet, StockViewSet, home_view
 router = DefaultRouter()
 router.register('products', ProductViewSet)
 router.register('stocks', StockViewSet)
-router.register('home', home_view)
+
 urlpatterns = router.urls
