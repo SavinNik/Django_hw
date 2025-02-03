@@ -39,17 +39,17 @@ jobs:
 
       - name: Установка зависимостей
         run: |
-          cd Django_hw/3.2-crud/stocks_products
+          cd 3.2-crud/stocks_products
           pip install -r requirements.txt
 
       - name: Выполнение flake8
         run: |
-          cd Django_hw/3.2-crud/stocks_products
+          cd 3.2-crud/stocks_products
           flake8 . --exclude migrations --ignore E501,F401,E302,W293,W391,W292
 
       - name: Тесты
         run: |
-          cd Django_hw/3.2-crud/stocks_products
+          cd 3.2-crud/stocks_products
           python manage.py test
         env:
           NAME: ${{ env.NAME }}
