@@ -8,7 +8,7 @@ from logistic.serializers import ProductSerializer, StockSerializer
 
 
 def home_view(request):
-    return HttpResponse('Hello Netology1!')
+    return HttpResponse('Hello Netology!')
 
 
 class ProductViewSet(ModelViewSet):
