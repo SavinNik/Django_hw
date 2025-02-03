@@ -36,13 +36,13 @@ jobs:
           python-version: 3.12
 
       - name: Установка зависимостей
-        run: pip install -r stocks_products/requirements.txt
+        run: pip install -r 3.2-crud/stocks_products/requirements.txt
 
       - name: Выполнение flake8
         run: flake8 stocks_products --exclude migrations --ignore E501,F401,E302,W293,W391,W292
 
       - name: Тесты
-        run: python stocks_products/manage.py test
+        run: python 3.2-crud/stocks_products/manage.py test
         env:
           NAME: ${{ env.NAME }}
           USER: ${{ env.USER }}
