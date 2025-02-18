@@ -16,7 +16,7 @@ COPY . .
 RUN python manage.py migrate
 
 # Указываем порт, который будет использовать приложение
-EXPOSE 8000
+EXPOSE 5000
 
 # Команда для запуска сервера
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "stocks_ptoducts.wsgi"]
